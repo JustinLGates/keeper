@@ -1,6 +1,6 @@
 <template>
   <div class>
-    <div class="card">
+    <div class="card-main shadow bg-light">
       <img src="http://placehold.it/150" class="card-img-top" alt="https://placehold.id/150" />
       <div class="card-body">
         <h5 class="card-title"></h5>
@@ -22,4 +22,7 @@ export default {
 </script>
 
 <style>
+.card-main {
+  border-radius: 20px;
+}
 </style>

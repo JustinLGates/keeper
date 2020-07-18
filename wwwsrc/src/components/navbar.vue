@@ -6,28 +6,10 @@
           <span>
             <i class="fa fa-star px-2 action"></i>
           </span>
-          <!-- <span v-if="$auth.isAuthenticated" class="nav-item dropdown py-2">
-            <a
-              class="nav-link dropdown-toggle"
-              data-toggle="dropdown"
-              href="#"
-              role="button"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >Popular</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">New</a>
-              <a class="dropdown-item" href="#">Mine</a>
-
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Popular</a>
-            </div>
-          </span>-->
         </div>
         <div class="d-flex align-items-center grow-1 w-100">
-          <input class="searchBar w-100 p-2 mx-2" type="text" placeholder="Search..." />
+          <input class="input-round w-100 p-2 mx-2" type="text" placeholder="Search..." />
         </div>
-        <!-- <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
         <div class="d-flex align-items-center p-2">
           <button class="btn btn-success" @click="login" v-if="!$auth.isAuthenticated">Login</button>
           <button class="circle action p-0 m-0" v-else>
@@ -58,8 +40,6 @@ export default {
     async login() {
       await this.$auth.loginWithPopup();
       this.$store.dispatch("setBearer", this.$auth.bearer);
-      console.log("this.$auth.user: ");
-      console.log(this.$auth.user);
     },
     async logout() {
       this.$store.dispatch("resetBearer");
@@ -70,19 +50,4 @@ export default {
 </script>
 
 <style >
-.searchBar {
-  border-radius: 20px;
-  outline: none !important;
-}
-.action:hover {
-  cursor: pointer;
-  opacity: 0.5;
-}
-.circle {
-  border-radius: 50%;
-}
-.proflieImg {
-  width: 3rem;
-  height: 3rem;
-}
 </style>

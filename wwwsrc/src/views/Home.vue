@@ -2,6 +2,7 @@
   <div class="home">
     <div class="card-columns">
       <Keep v-for="keep in publicKeeps" :key="keep.id" :keep="keep" />
+      <div type="button" data-toggle="modal" data-target="#keepFormModal">click me</div>
     </div>
   </div>
 </template>
@@ -18,7 +19,7 @@ export default {
       return this.$store.state.user;
     },
     publicKeeps() {
-      return this.$store.state.publicKeeps;
+      return this.$store.state.KeepsStore.publicKeeps;
     }
   },
   methods: {

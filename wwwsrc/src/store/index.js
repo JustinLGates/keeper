@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import Axios from "axios";
 import router from "../router";
+import { KeepsStore } from "./KeepsStore";
 
 Vue.use(Vuex);
 
@@ -12,12 +13,12 @@ let baseUrl = location.host.includes("localhost")
 let api = Axios.create({
   baseURL: baseUrl + "api/",
   timeout: 3000,
-  withCredentials: true
+  withCredentials: true,
 });
 
 export default new Vuex.Store({
   state: {
-    publicKeeps: []
+    publicKeeps: [],
   },
   mutations: {},
   actions: {
@@ -26,6 +27,9 @@ export default new Vuex.Store({
     },
     resetBearer() {
       api.defaults.headers.authorization = "";
-    }
-  }
+    },
+  },
+  modules: {
+    KeepsStore,
+  },
 });
