@@ -2,14 +2,18 @@
   <div id="app">
     <navbar />
     <router-view />
-    <keepform />
+    <keepForm />
+    <vaultForm />
+    <optionsForm />
   </div>
 </template>
 
 <script>
 import Navbar from "@/components/navbar";
 import { onAuth } from "@bcwdev/auth0-vue";
-import keepform from "./components/KeepForm.vue";
+import keepForm from "./components/Modals/KeepForm.vue";
+import vaultForm from "./components/Modals/VaultForm.vue";
+import optionsForm from "./components/Modals/OptionsForm.vue";
 export default {
   name: "App",
   async beforeCreate() {
@@ -18,7 +22,9 @@ export default {
   },
   components: {
     Navbar,
-    keepform
+    keepForm,
+    vaultForm,
+    optionsForm
   }
 };
 </script>
@@ -78,7 +84,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #b82d2d;
+  background-color: #444444;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }

@@ -2,7 +2,7 @@
   <div class="home">
     <div class="card-columns">
       <Keep v-for="keep in publicKeeps" :key="keep.id" :keep="keep" />
-      <div type="button" data-toggle="modal" data-target="#keepFormModal">click me</div>
+      <div type="button" data-toggle="modal" data-target="#keepFormModal">add keep modal test</div>
     </div>
   </div>
 </template>

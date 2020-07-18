@@ -15,5 +15,9 @@ export const KeepsStore = {
       console.log(res.data);
       commit("setPublicKeeps", res.data);
     },
+    async createKeep({ commit, dispatch }, data) {
+      let res = await api.post("keeps", data);
+      console.log(res.data);
+    },
   },
 };

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
+
 namespace Keepr.Controllers
 {
   [ApiController]
@@ -35,7 +36,7 @@ namespace Keepr.Controllers
 
     [HttpPost]
     [Authorize]
-    public ActionResult<Keep> Post([FromBody] Keep newKeep)
+    public ActionResult<Keep> Create([FromBody] Keep newKeep)
     {
       try
       {

@@ -6,9 +6,7 @@ namespace Keepr.Models
   {
     public int Id { get; set; }
     public string UserId { get; set; }
-    [Required]
     public string Name { get; set; }
-    [Required]
     public string Description { get; set; }
     public string Img { get; set; }
     public bool IsPrivate { get; set; }
