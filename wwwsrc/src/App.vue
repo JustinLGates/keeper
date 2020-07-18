@@ -41,6 +41,16 @@ export default {
 }
 .input-round {
   border-radius: 20px;
+  border: 3px inset rgb(109, 109, 109);
+  outline: none !important;
+}
+.input-round-1 {
+  border-radius: 20px;
+}
+.input-round-2 {
+  border-radius: 20px;
+  box-shadow: 2px 2px 2px rgb(26, 26, 26);
+  border: 3px outset rgb(31, 31, 31);
   outline: none !important;
 }
 
@@ -51,6 +61,10 @@ export default {
   display: inline-block;
   width: 60px;
   height: 34px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 2px rgb(26, 26, 26);
+  border: 3px outset rgb(31, 31, 31);
+  outline: none !important;
 }
 .switch input {
   opacity: 0;
@@ -64,7 +78,6 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  //2a2a2a
   background-color: #b82d2d;
   -webkit-transition: 0.4s;
   transition: 0.4s;
@@ -72,9 +85,10 @@ export default {
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
+  height: 23px;
+  width: 23px;
+  top: 3px;
+  left: 2px;
   bottom: 4px;
   background-color: #dadada;
   -webkit-transition: 0.4s;
