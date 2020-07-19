@@ -4,6 +4,7 @@ export const KeepsStore = {
   state: {
     publicKeeps: [],
     userKeeps: [],
+    activeKeep: {},
   },
   mutations: {
     setPublicKeeps(state, keeps) {
@@ -11,6 +12,9 @@ export const KeepsStore = {
     },
     setUserKeeps(state, keeps) {
       state.publicKeeps = keeps;
+    },
+    setActiveKeep(state, keep) {
+      state.activeKeep = keep;
     },
   },
   actions: {
@@ -21,6 +25,9 @@ export const KeepsStore = {
       } catch (error) {
         console.error(Error);
       }
+    },
+    setActiveKeep({ commit }, keep) {
+      commit("setActiveKeep", keep);
     },
     //TODO ADD THIS ROUTE IN THE SERVER
     async getUserKeeps({ commit }) {

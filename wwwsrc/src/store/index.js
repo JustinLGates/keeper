@@ -13,7 +13,7 @@ export default new Vuex.Store({
   },
   mutations: {},
   actions: {
-    setBearer({}, bearer) {
+    setBearer({ commit, dispatch }, bearer) {
       api.defaults.headers.authorization = bearer;
     },
     resetBearer() {
