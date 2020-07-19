@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12">
         <div class="card-columns">
-          <Keep v-for="keep in publicKeeps" :key="keep.id" :keep="keep" />
+          <Keep v-for="keep in publicKeeps" :key="keep.id" :keepData="keep" />
         </div>
       </div>
     </div>

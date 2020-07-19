@@ -3,7 +3,6 @@ import { api } from "./AxiosService";
 export const KeepsStore = {
   state: {
     publicKeeps: [],
-    keep: {},
   },
   mutations: {
     setPublicKeeps(state, keeps) {

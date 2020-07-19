@@ -12,69 +12,35 @@
     </div>
 
     <div class="row">
-      <!--  TODO MAKE A METHOD TO HANDLE Details -->
-      <div @click="viewDetails" class="col-12 col-md-4 w-100 p-1 px-sm-3 hide-show">
-        <div class="card bg-secondary w-100 text-light p-1 px-sm-2 input-round-1">
-          <div class="d-flex justify-content-between align-items-center p-1">
-            <span>
-              <h4 class="text-primary">This is the title</h4>
-            </span>
-            <span class="input-round-2 mouse-show">
-              <!--  TODO MAKE A METHOD TO HANDLE ADDING KEEP TO A USERS VAULT -->
-              <button
-                @click="CreateKeepReferance"
-                class="btn btn-info input-round-1 text-light"
-              >Keeper</button>
-            </span>
-          </div>
-          <p class="px-2 mouse-show">Description</p>
-        </div>
-      </div>
-
-      <div class="col-12 col-md-4 w-100 p-1 px-sm-3 hide-show">
-        <div class="card bg-secondary w-100 text-light p-1 px-sm-2 input-round-1">
-          <div class="d-flex justify-content-between align-items-center p-1">
-            <span>
-              <h4 class="text-primary">asd</h4>
-            </span>
-            <span class="input-round-2 mouse-show">
-              <button class="btn btn-info input-round-1 text-light">view</button>
-            </span>
-          </div>
-          <p class="px-2">as</p>
-        </div>
-      </div>
-      <div class="col-12 col-md-4 w-100 p-1 px-sm-3 hide-show">
-        <div class="card bg-secondary w-100 text-light p-1 px-sm-2 input-round-1">
-          <div class="d-flex justify-content-between align-items-center p-1">
-            <span>
-              <h4 class="text-primary">asd</h4>
-            </span>
-            <span class="input-round-2 mouse-show">
-              <button class="btn btn-info input-round-1 text-light">view</button>
-            </span>
-          </div>
-          <p class="px-2">as</p>
-        </div>
+      <!-- <div class="card-columns">
+        insert vaults or keeps here...
+      </div>-->
+      <div class="col-12">
+        <vault v-for="vault in vaults" :key="vault.id" :vaultData="vault" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import vault from "../components/Vault.vue";
 export default {
+  name: "dashboard",
   mounted() {
-    this.$store.dispatch("getUserVaults");
+    this.$store.dispatch("getVaults");
   },
-  computed: {},
-  methods: {
-    CreateKeepReferance() {
-      event.stopPropagation();
-      console.log("keeping......");
-    },
-    viewDetails() {
-      console.log("taking to details......");
+  computed: {
+    vaults() {
+      return this.$store.state.VaultsStore.vaults;
     }
+  },
+  methods: {
+    CreateVault() {
+      event.stopPropagation();
+    }
+  },
+  components: {
+    vault
   }
 };
 </script>

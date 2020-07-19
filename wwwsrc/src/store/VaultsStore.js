@@ -2,22 +2,24 @@ import { api } from "./AxiosService";
 
 export const VaultStore = {
   state: {
-    vaults: [],
+    vaults: [{ Name: "test", Description: "its a test" }],
   },
   mutations: {
-    setUserVaults(state, vaults) {
+    setVaults(state, vaults) {
       state.vaults = vaults;
     },
   },
   actions: {
-    async getVaults({ commit }, id) {
-      // let res = await api.get("vaults/" + id);
-      // TODO REMOVE CONSOLE LOG
-      console.log("geting vaults....");
-      // commit("setVaults", res.data);
+    async getVaults({ commit }) {
+      try {
+        let res = await api.get("vaults");
+        commit("setVaults", res.data);
+      } catch (error) {
+        console.error(error);
+      }
     },
     async createVault({ commit, dispatch }, data) {
-      // let res = await api.post("vaults", data);
+      let res = await api.post("vaults", data);
       // TODO REMOVE CONSOLE LOG
       console.log("create");
     },

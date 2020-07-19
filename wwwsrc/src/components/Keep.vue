@@ -1,12 +1,12 @@
 <template>
   <div class="hide-show">
     <div class="card input-round-1 bg-secondary text-light">
-      <img class="w-100 round-top" :src="keep.img" />
-      <h5 class="text-primary">{{keep.name}}</h5>
+      <img class="w-100 round-top" :src="keepData.img" />
+      <h5 class="text-primary">{{keepData.name}}</h5>
       <!--  TODO MAKE A METHOD TO HANDLE Details -->
 
       <!--  TODO MAKE A METHOD TO HANDLE ADDING KEEP TO A USERS VAULT -->
-      <p class="px-2">{{keep.description}}</p>
+      <p class="px-2">{{keepData.description}}</p>
       <div class="d-flex justify-content-between p-2">
         <button
           @click="CreateKeepReferance"
@@ -25,7 +25,8 @@
 
 <script>
 export default {
-  props: ["keep"]
+  name: "Keep",
+  props: ["keepData"]
 };
 </script>
 

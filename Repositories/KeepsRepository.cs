@@ -9,18 +9,15 @@ namespace Keepr.Repositories
   public class KeepsRepository
   {
     private readonly IDbConnection _db;
-
     public KeepsRepository(IDbConnection db)
     {
       _db = db;
     }
-
     internal IEnumerable<Keep> Get()
     {
       string sql = "SELECT * FROM Keeps WHERE isPrivate = 0;";
       return _db.Query<Keep>(sql);
     }
-
     internal Keep Create(Keep KeepData)
     {
       string sql = @"
@@ -33,17 +30,6 @@ namespace Keepr.Repositories
       KeepData.Id = _db.ExecuteScalar<int>(sql, KeepData);
       return KeepData;
     }
-    //     INSERT INTO tacos
-    //     (description, name, price)
-    //     VALUES
-    //     (@Description, @Name, @Price);
-    //     SELECT LAST_INSERT_ID();";
-    //   return _db.ExecuteScalar<int>(sql, newTaco);
-    // }
-    // UserId  Name  Description  Img IsPrivate Views  Shares Keeps
-
-
-
     internal bool Delete(int id)
     {
       string sql = "DELETE FROM Keeps WHERE  id = @id";
