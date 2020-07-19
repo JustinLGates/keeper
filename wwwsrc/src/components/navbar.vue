@@ -21,7 +21,7 @@
               <img class="circle proflieImg action p-1" src="https://placehold.it/150" />
             </router-link>
             <div class="d-flex mx-1 mx-sm-2 mx-md-3">
-              <div class="dropdown ml-1">
+              <div class="dropdown">
                 <span
                   type="button"
                   id="dropdownMenuOffset"

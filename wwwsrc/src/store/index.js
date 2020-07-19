@@ -3,7 +3,7 @@ import Vuex from "vuex";
 import Axios from "axios";
 import router from "../router";
 import { KeepsStore } from "./KeepsStore";
-
+import { VaultStore } from "./VaultsStore";
 Vue.use(Vuex);
 
 let baseUrl = location.host.includes("localhost")
@@ -31,5 +31,6 @@ export default new Vuex.Store({
   },
   modules: {
     KeepsStore,
+    VaultStore,
   },
 });
