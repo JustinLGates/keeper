@@ -4,9 +4,7 @@ import Axios from "axios";
 import router from "../router";
 import { KeepsStore } from "./KeepsStore";
 import { VaultStore } from "./VaultsStore";
-import { setBearer } from "../store/AxiosService";
-import { resetBearer } from "../store/AxiosService";
-export { api } from "../store/AxiosService";
+import { api } from "./AxiosService";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -14,7 +12,14 @@ export default new Vuex.Store({
     publicKeeps: [],
   },
   mutations: {},
-  actions: {},
+  actions: {
+    setBearer({}, bearer) {
+      api.defaults.headers.authorization = bearer;
+    },
+    resetBearer() {
+      api.defaults.headers.authorization = "";
+    },
+  },
   modules: {
     KeepsStore,
     VaultStore,
