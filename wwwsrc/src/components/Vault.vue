@@ -1,21 +1,14 @@
-<template>
-  <div class="card">
-    <div class="hide-show">
-      <div class="card bg-secondary w-100 text-light p-1 px-sm-2 input-round-1">
-        <div class="d-flex justify-content-between align-items-center p-1">
-          <span>
-            <h4 class="text-primary">{{vaultData.Name}}</h4>
-          </span>
-          <span class="input-round-2 mouse-show">
-            <router-link
-              class="btn btn-info input-round-1 text-light"
-              :to="{ name: 'vault', params: { id: vaultData.Id }}"
-            >View</router-link>
-            <!-- <a @click="viewDetails" class="btn btn-info input-round-1 text-light">View Vault</a> -->
-          </span>
-        </div>
-        <p class="px-2 mouse-show">{{vaultData.Description}}</p>
-      </div>
+<template >
+  <!--  -->
+  <div class="text-light hide-show bg-secondary input-round-1 shadow p-2">
+    <span>
+      <router-link :to="{ name: 'vault', params: { id: vaultData.id }}">
+        <h4 class="text-primary d-inline">{{vaultData.name}}</h4>
+      </router-link>
+    </span>
+    <p class="px-2 mouse-show">{{vaultData.description}}</p>
+    <div class="mouse-show">
+      <i class="fa fa-dots"></i>
     </div>
   </div>
 </template>

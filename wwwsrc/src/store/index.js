@@ -3,7 +3,7 @@ import Vuex from "vuex";
 import Axios from "axios";
 import router from "../router";
 import { KeepsStore } from "./KeepsStore";
-import { VaultStore } from "./VaultsStore";
+import { VaultsStore } from "./VaultsStore";
 import { api } from "./AxiosService";
 Vue.use(Vuex);
 
@@ -22,6 +22,6 @@ export default new Vuex.Store({
   },
   modules: {
     KeepsStore,
-    VaultStore,
+    VaultsStore,
   },
 });

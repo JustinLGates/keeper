@@ -10,13 +10,20 @@
         <button class="text-light btn btn-info btn-outline-dark m-1 my-2">Keeps</button>
       </div>
     </div>
-
     <div class="row">
-      <!-- <div class="card-columns">
-        insert vaults or keeps here...
-      </div>-->
-      <div class="col-12">
-        <vault v-for="vault in vaults" :key="vault.id" :vaultData="vault" />
+      <div class="col-12 py-3">
+        <div v-if="this.showVaults" class="card-columns">
+          <vault class="card" v-for="vault in vaults" :key="vault.id" :vaultData="vault" />
+        </div>
+        <div v-else class="card-columns">
+          <vault class="card" v-for="vault in vaults" :key="vault.id" :vaultData="vault" />
+        </div>
+        <keep
+          class="card bg-secondary input-round-1 shadow"
+          v-for="keep in keeps"
+          :key="keep.id"
+          :keepData="keep"
+        />
       </div>
     </div>
   </div>
@@ -26,17 +33,20 @@
 import vault from "../components/Vault.vue";
 export default {
   name: "dashboard",
+  data() {
+    return {
+      showVaults: true
+    };
+  },
   mounted() {
     this.$store.dispatch("getVaults");
   },
   computed: {
     vaults() {
       return this.$store.state.VaultsStore.vaults;
-    }
-  },
-  methods: {
-    CreateVault() {
-      event.stopPropagation();
+    },
+    keeps() {
+      return this.$store.state.KeepsStore.userKeeps;
     }
   },
   components: {
@@ -46,16 +56,4 @@ export default {
 </script>
 
 <style>
-.profile-img-large {
-  height: 8rem;
-  width: 8rem;
-  border-radius: 50%;
-}
-.mouse-show {
-  opacity: 0;
-}
-/* may need to adjust this to .. */
-.hide-show:hover .mouse-show {
-  opacity: 1;
-}
 </style>

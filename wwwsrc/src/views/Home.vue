@@ -1,9 +1,9 @@
 <template>
   <div class="home container-fluid">
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 pt-3">
         <div class="card-columns">
-          <Keep v-for="keep in publicKeeps" :key="keep.id" :keepData="keep" />
+          <Keep v-for="keep in publicKeeps" :key="keep.Id" :keepData="keep" />
         </div>
       </div>
     </div>

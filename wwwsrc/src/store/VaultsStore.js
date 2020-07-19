@@ -1,8 +1,8 @@
 import { api } from "./AxiosService";
 
-export const VaultStore = {
+export const VaultsStore = {
   state: {
-    vaults: [{ Name: "test", Description: "its a test" }],
+    vaults: [],
   },
   mutations: {
     setVaults(state, vaults) {
@@ -19,9 +19,11 @@ export const VaultStore = {
       }
     },
     async createVault({ commit, dispatch }, data) {
-      let res = await api.post("vaults", data);
-      // TODO REMOVE CONSOLE LOG
-      console.log("create");
+      try {
+        await api.post("vaults", data);
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
 };

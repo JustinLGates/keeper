@@ -48,6 +48,10 @@ export default {
   width: 3rem;
   height: 3rem;
 }
+.input-round-top {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
 .input-round {
   border-radius: 20px;
   border: 3px inset rgb(109, 109, 109);
@@ -123,4 +127,16 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 //End of switch component
+.profile-img-large {
+  height: 8rem;
+  width: 8rem;
+  border-radius: 50%;
+}
+.mouse-show {
+  opacity: 0;
+}
+/* may need to adjust this to .. */
+.hide-show:hover .mouse-show {
+  opacity: 1;
+}
 </style>
