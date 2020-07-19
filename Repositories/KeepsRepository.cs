@@ -25,15 +25,23 @@ namespace Keepr.Repositories
     {
       string sql = @"
         INSERT INTO keeps
-            (UserId name description img isPrivate views shares Keeps)
-            VALUES(@UserId @Name @Description @Img @IsPrivate @Views @Shares @Keeps)
+            (name, description, userId, img, isPrivate)
+            VALUES
+            (@Name, @Description, @UserId, @Img, @IsPrivate);
             SELECT LAST_INSERT_ID();
             ";
       KeepData.Id = _db.ExecuteScalar<int>(sql, KeepData);
       return KeepData;
     }
-
+    //     INSERT INTO tacos
+    //     (description, name, price)
+    //     VALUES
+    //     (@Description, @Name, @Price);
+    //     SELECT LAST_INSERT_ID();";
+    //   return _db.ExecuteScalar<int>(sql, newTaco);
+    // }
     // UserId  Name  Description  Img IsPrivate Views  Shares Keeps
+
 
 
     internal bool Delete(int id)

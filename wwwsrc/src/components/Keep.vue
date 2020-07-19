@@ -1,15 +1,17 @@
 <template>
-  <div class>
-    <div class="card-main shadow bg-light">
-      <img src="http://placehold.it/150" class="card-img-top" alt="https://placehold.id/150" />
-      <div class="card-body">
-        <h5 class="card-title"></h5>
-        <p class="card-text">
-          {{keep}}
-          <!-- {{keep.name}} -->
-          <!-- {{keep.description}} -->
-          <!-- {{keep.img}} -->
-        </p>
+  <div class="hide-show">
+    <div class="card input-round-1 bg-secondary text-light">
+      <img class="w-100 round-top" :src="keep.img" />
+      <h5 class="text-primary">{{keep.name}}</h5>
+      <!--  TODO MAKE A METHOD TO HANDLE Details -->
+
+      <!--  TODO MAKE A METHOD TO HANDLE ADDING KEEP TO A USERS VAULT -->
+      <p class="px-2">{{keep.description}}</p>
+      <div class="d-flex justify-content-between p-2">
+        <button
+          @click="CreateKeepReferance"
+          class="btn btn-info input-round-1 text-light mouse-show"
+        >Keeper</button>
       </div>
     </div>
   </div>
@@ -22,7 +24,8 @@ export default {
 </script>
 
 <style>
-.card-main {
-  border-radius: 20px;
+.round-top {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 </style>

@@ -4,3 +4,17 @@
   border-color: darken($color: $primary, $amount: 10);
   border-width: medium;
 }
+.card-columns {
+  @include media-breakpoint-only(xs) {
+    column-count: 2;
+  }
+  @include media-breakpoint-only(md) {
+    column-count: 3;
+  }
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
+  @include media-breakpoint-only(xl) {
+    column-count: 6;
+  }
+}
