@@ -12,11 +12,19 @@ export const KeepsStore = {
   },
   actions: {
     async getPublicKeeps({ commit }) {
-      let res = await api.get("keeps");
-      commit("setPublicKeeps", res.data);
+      try {
+        let res = await api.get("keeps");
+        commit("setPublicKeeps", res.data);
+      } catch (error) {
+        console.error(Error);
+      }
     },
     async createKeep({}, data) {
-      await api.post("keeps", data);
+      try {
+        await api.post("keeps", data);
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
 };

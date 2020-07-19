@@ -4,31 +4,17 @@ import Axios from "axios";
 import router from "../router";
 import { KeepsStore } from "./KeepsStore";
 import { VaultStore } from "./VaultsStore";
+import { setBearer } from "../store/AxiosService";
+import { resetBearer } from "../store/AxiosService";
+export { api } from "../store/AxiosService";
 Vue.use(Vuex);
-
-let baseUrl = location.host.includes("localhost")
-  ? "https://localhost:5001/"
-  : "/";
-
-let api = Axios.create({
-  baseURL: baseUrl + "api/",
-  timeout: 3000,
-  withCredentials: true,
-});
 
 export default new Vuex.Store({
   state: {
     publicKeeps: [],
   },
   mutations: {},
-  actions: {
-    setBearer({}, bearer) {
-      api.defaults.headers.authorization = bearer;
-    },
-    resetBearer() {
-      api.defaults.headers.authorization = "";
-    },
-  },
+  actions: {},
   modules: {
     KeepsStore,
     VaultStore,

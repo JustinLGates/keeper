@@ -31,7 +31,7 @@ namespace Keepr.Controllers
     }
 
     [HttpPost]
-    [Authorize]
+    // [Authorize]
     public ActionResult<Keep> post([FromBody] Keep newKeep)
     {
       try

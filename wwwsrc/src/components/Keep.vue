@@ -12,6 +12,12 @@
           @click="CreateKeepReferance"
           class="btn btn-info input-round-1 text-light mouse-show"
         >Keeper</button>
+        <span
+          type="button"
+          class="hide-show"
+          data-toggle="modal"
+          data-target="#keepDetailsModal"
+        >dets</span>
       </div>
     </div>
   </div>

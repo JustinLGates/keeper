@@ -5,6 +5,7 @@
     <keepForm />
     <vaultForm />
     <optionsForm />
+    <keep-details-modal />
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import { onAuth } from "@bcwdev/auth0-vue";
 import keepForm from "./components/Modals/KeepForm.vue";
 import vaultForm from "./components/Modals/VaultForm.vue";
 import optionsForm from "./components/Modals/OptionsForm.vue";
+import keepDetailsModal from "./components/Modals/KeepDetails.vue";
 export default {
   name: "App",
   async beforeCreate() {
@@ -24,7 +26,8 @@ export default {
     Navbar,
     keepForm,
     vaultForm,
-    optionsForm
+    optionsForm,
+    keepDetailsModal
   }
 };
 </script>
