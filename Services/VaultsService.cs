@@ -29,5 +29,10 @@ namespace keepr.Services
     {
       return _repo.Delete(id);
     }
+
+    internal object GetById(int id, string userId)
+    {
+      return _repo.GetById(id, userId);
+    }
   }
 }
