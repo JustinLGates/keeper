@@ -22,7 +22,7 @@ export default {
       return this.$store.state.user;
     },
     publicKeeps() {
-      return this.$store.state.KeepsStore.publicKeeps;
+      return this.$store.state.KeepsStore.keeps;
     }
   },
   methods: {

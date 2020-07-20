@@ -5,7 +5,12 @@
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    this.$store.dispatch("getKeepsByVaultId", id);
+  },
+  mounted() {}
+};
 </script>
 
 <style>

@@ -25,5 +25,14 @@ export const VaultsStore = {
         console.error(error);
       }
     },
+    async addToVault({ commit, dispatch }, data) {
+      try {
+        let url = `vaults/${data.VaultId}/keeps/${data.KeepId}`;
+        let res = await api.post(url, data);
+        console.log(res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
 };

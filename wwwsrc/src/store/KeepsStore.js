@@ -2,16 +2,12 @@ import { api } from "./AxiosService";
 
 export const KeepsStore = {
   state: {
-    publicKeeps: [],
-    userKeeps: [],
+    keeps: [],
     activeKeep: {},
   },
   mutations: {
-    setPublicKeeps(state, keeps) {
-      state.publicKeeps = keeps;
-    },
-    setUserKeeps(state, keeps) {
-      state.publicKeeps = keeps;
+    setKeeps(state, keeps) {
+      state.keeps = keeps;
     },
     setActiveKeep(state, keep) {
       state.activeKeep = keep;
@@ -21,7 +17,7 @@ export const KeepsStore = {
     async getPublicKeeps({ commit }) {
       try {
         let res = await api.get("keeps");
-        commit("setPublicKeeps", res.data);
+        commit("setKeeps", res.data);
       } catch (error) {
         console.error(Error);
       }
@@ -29,11 +25,10 @@ export const KeepsStore = {
     setActiveKeep({ commit }, keep) {
       commit("setActiveKeep", keep);
     },
-    //TODO ADD THIS ROUTE IN THE SERVER
-    async getUserKeeps({ commit }) {
+    async getKeepsByVaultId({ commit }) {
       try {
-        let res = await api.get("keeps/all");
-        commit("setPublicKeeps", res.data);
+        let res = await api.get("keeps/");
+        commit("setKeeps", res.data);
       } catch (error) {
         console.error(Error);
       }

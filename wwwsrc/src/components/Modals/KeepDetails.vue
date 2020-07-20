@@ -48,8 +48,7 @@
                     :key="vault.id"
                     class="dropdown-item text-primary"
                     type="button"
-                    data-toggle="modal"
-                    data-target="#keepFormModal"
+                    @click="addToVault(vault.id)"
                   >{{vault.name}}</a>
                 </div>
               </div>
@@ -82,6 +81,15 @@ export default {
   methods: {
     getKeep() {
       this.$store.dispatch("getKeep", this.form);
+    },
+    addToVault(vaultId) {
+      let data = {
+        VaultId: vaultId,
+        KeepId: this.activeKeep.id
+      };
+      console.log(data.KeepId);
+
+      this.$store.dispatch("addToVault", data);
     }
   },
   components: {

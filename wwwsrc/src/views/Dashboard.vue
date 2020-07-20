@@ -46,7 +46,7 @@ export default {
       return this.$store.state.VaultsStore.vaults;
     },
     keeps() {
-      return this.$store.state.KeepsStore.userKeeps;
+      return this.$store.state.KeepsStore.keeps;
     }
   },
   components: {
