@@ -13,9 +13,9 @@ namespace Keepr.Services
       _repo = repo;
     }
 
-    internal Keep Get(int id)
+    internal Keep Get(int id, string userId)
     {
-      return _repo.Get(id);
+      return _repo.Get(id, userId);
     }
     public IEnumerable<Keep> Get()
     {
@@ -40,7 +40,7 @@ namespace Keepr.Services
 
     internal Keep Edit(Keep editKeep)
     {
-      Keep original = Get(editKeep.Id);
+      Keep original = Get(editKeep.Id, editKeep.UserId);
       original.Name = editKeep.Name == null ? original.Name : editKeep.Name;
       original.Description = editKeep.Description == null ? original.Description : editKeep.Description;
       original.Img = editKeep.Img;

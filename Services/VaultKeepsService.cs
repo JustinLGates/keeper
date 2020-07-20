@@ -3,6 +3,7 @@ using keepr.Models;
 using keepr.Repositories;
 using Keepr.Models;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 
 namespace keepr.Services
 {
@@ -13,15 +14,19 @@ namespace keepr.Services
     {
       _repo = repo;
     }
-    internal VaultKeeps Create(VaultKeeps newVaultKeeps)
+    internal VaultKeep Create(VaultKeep vaultKeep)
     {
-      return _repo.Create(newVaultKeeps);
+      return _repo.Create(vaultKeep);
     }
 
-    internal IEnumerable<Keep> Get(Vault vault)
+    internal IEnumerable<VaultKeepViewModel> getKeepsByVaultId(int id, string userId)
     {
-      return _repo.getKeepByVaultId(vault);
+      return _repo.getKeepByVaultId(id, userId);
     }
 
+    internal string Delete(int id, string userId)
+    {
+      return _repo.Delete(id, userId);
+    }
   }
 }

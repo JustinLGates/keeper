@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using Dapper;
-using keepr.Models;
 using Keepr.Models;
+using Dapper;
+using Microsoft.AspNetCore.Mvc;
+using keepr.Models;
 
 namespace keepr.Repositories
 {
@@ -14,7 +15,7 @@ namespace keepr.Repositories
     {
       _db = db;
     }
-    internal VaultKeeps Create(VaultKeeps newVaultKeeps)
+    internal VaultKeep Create(VaultKeep vaultKeep)
     {
       string sql = @"
         INSERT INTO vaultkeeps
@@ -23,25 +24,30 @@ namespace keepr.Repositories
             (@VaultId, @KeepId, @UserId);
             SELECT LAST_INSERT_ID();
             ";
-      newVaultKeeps.Id = _db.ExecuteScalar<int>(sql, newVaultKeeps);
-      return newVaultKeeps;
+
+      vaultKeep.Id = _db.ExecuteScalar<int>(sql, vaultKeep);
+      return vaultKeep;
     }
 
-
-
-    internal IEnumerable<Keep> getKeepByVaultId(Vault vault)
+    internal string Delete(int id, string UserId)
     {
       string sql = @"
-      SELECT 
-        k.*,
-        vk.id as vaultKeepId
-      FROM vaultkeeps vk
-      INNER JOIN keeps k ON k.id = vk.keepId 
-      WHERE (vaultId = @VaultId AND vk.userId = @UserId); ";
-
-      return _db.Query<Keep>(sql, vault);
+      DELETE FROM vaultkeeps WHERE (id = @id AND userId = @userId);";
+      _db.Execute(sql, new { id, UserId });
+      return "Success";
     }
 
+    internal IEnumerable<VaultKeepViewModel> getKeepByVaultId(int id, string userId)
+    {
+      string sql = @"
+       SELECT 
+         k.*,
+         vk.id as vaultKeepId
+       FROM vaultkeeps vk
+       INNER JOIN keeps k ON k.id = vk.keepId 
+       WHERE (vaultId = @id AND vk.userId = @userId); ";
 
+      return _db.Query<VaultKeepViewModel>(sql, new { id, userId });
+    }
   }
 }

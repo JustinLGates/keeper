@@ -10,8 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace keepr.Controllers
 {
   [ApiController]
-  [Authorize]
   [Route("api/[controller]")]
+  [Authorize]
   public class VaultsController : ControllerBase
   {
 
@@ -22,6 +22,7 @@ namespace keepr.Controllers
       _vs = vs;
       _vks = vks;
     }
+    [Authorize]
     [HttpGet]
     public ActionResult<IEnumerable<Vault>> Get()
     {
@@ -35,8 +36,23 @@ namespace keepr.Controllers
         return BadRequest(e.Message);
       };
     }
+
+    [HttpGet("{id}/keeps")]
+    public ActionResult<IEnumerable<VaultKeepViewModel>> GetKeeps(int id)
+    {
+      try
+      {
+        string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        return Ok(_vks.getKeepsByVaultId(id, userId));
+
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      };
+    }
     [HttpGet("{id}")]
-    public ActionResult<Vault> Get(int id)
+    public ActionResult<Vault> GetByVaultId(int id)
     {
       try
       {
@@ -48,8 +64,9 @@ namespace keepr.Controllers
         return BadRequest(e.Message);
       };
     }
+
     [HttpPost("{vaultId}/keeps/{keepId}")]
-    public ActionResult<VaultKeeps> post([FromBody] VaultKeeps newVaultKeeps)
+    public ActionResult<VaultKeep> post([FromBody] VaultKeep newVaultKeeps)
     {
       try
       {

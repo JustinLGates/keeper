@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace keepr.Controllers
 {
 
+  [Authorize]
   [ApiController]
   [Route("api/[controller]")]
   public class VaultKeepsController : ControllerBase
@@ -22,5 +23,33 @@ namespace keepr.Controllers
       _vks = vks;
     }
 
+    [HttpPost]
+    public ActionResult<VaultKeep> create([FromBody] VaultKeep vaultKeep)
+    {
+      try
+      {
+        vaultKeep.UserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        return _vks.Create(vaultKeep);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+    [HttpDelete("{id}")]
+
+    public ActionResult<string> Delete(int id)
+    {
+      try
+      {
+        string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        return _vks.Delete(id, userId);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
   }
 }

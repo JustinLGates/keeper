@@ -46,13 +46,13 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       };
     }
-    [Authorize]
     [HttpGet("{id}")]
     public ActionResult<IEnumerable<Keep>> get(int id)
     {
       try
       {
-        return Ok(_ks.Get(id));
+        string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        return Ok(_ks.Get(id, userId));
       }
       catch (Exception e)
       {
