@@ -25,9 +25,10 @@ export const KeepsStore = {
     setActiveKeep({ commit }, keep) {
       commit("setActiveKeep", keep);
     },
-    async getKeepsByVaultId({ commit }) {
+    async getKeepsByVaultId({ commit }, vault) {
+      commit("setKeeps", []);
       try {
-        let res = await api.get("keeps/");
+        let res = await api.get("keeps/" + vault.Id);
         commit("setKeeps", res.data);
       } catch (error) {
         console.error(Error);

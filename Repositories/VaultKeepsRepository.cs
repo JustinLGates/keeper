@@ -1,6 +1,9 @@
+using System;
+using System.Collections.Generic;
 using System.Data;
 using Dapper;
 using keepr.Models;
+using Keepr.Models;
 
 namespace keepr.Repositories
 {
@@ -23,5 +26,22 @@ namespace keepr.Repositories
       newVaultKeeps.Id = _db.ExecuteScalar<int>(sql, newVaultKeeps);
       return newVaultKeeps;
     }
+
+
+
+    internal IEnumerable<Keep> getKeepByVaultId(Vault vault)
+    {
+      string sql = @"
+      SELECT 
+        k.*,
+        vk.id as vaultKeepId
+      FROM vaultkeeps vk
+      INNER JOIN keeps k ON k.id = vk.keepId 
+      WHERE (vaultId = @VaultId AND vk.userId = @UserId); ";
+
+      return _db.Query<Keep>(sql, vault);
+    }
+
+
   }
 }

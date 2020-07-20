@@ -1,15 +1,29 @@
 <template>
   <div>
-    <h1>vault details</h1>
+    <h1>{{keeps}}</h1>
   </div>
 </template>
 
 <script>
 export default {
+  name: "VaultDetails",
+
   mounted() {
-    this.$store.dispatch("getKeepsByVaultId", id);
+    this.getKeeps();
   },
-  mounted() {}
+  computed: {
+    keeps() {
+      return this.$store.state.KeepsStore.keeps;
+    }
+  },
+  methods: {
+    getKeeps() {
+      let data = {
+        Id: this.$route.params.id
+      };
+      this.$store.dispatch("getKeepsByVaultId", data);
+    }
+  }
 };
 </script>
 

@@ -1,5 +1,8 @@
+using System;
 using keepr.Models;
 using keepr.Repositories;
+using Keepr.Models;
+using System.Collections.Generic;
 
 namespace keepr.Services
 {
@@ -14,5 +17,11 @@ namespace keepr.Services
     {
       return _repo.Create(newVaultKeeps);
     }
+
+    internal IEnumerable<Keep> Get(Vault vault)
+    {
+      return _repo.getKeepByVaultId(vault);
+    }
+
   }
 }

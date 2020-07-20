@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
+using keepr.Models;
+using keepr.Services;
 using Keepr.Models;
 using Keepr.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -16,6 +18,7 @@ namespace Keepr.Controllers
     public KeepsController(KeepsService ks)
     {
       _ks = ks;
+
     }
     [HttpGet]
     public ActionResult<IEnumerable<Keep>> Get()
@@ -29,7 +32,33 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       };
     }
-
+    [Authorize]
+    [HttpGet("vault/{id}")]
+    public ActionResult<IEnumerable<Keep>> GetByVaultId(int id)
+    {
+      try
+      {
+        string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        return Ok(_ks.GetByVaultId(id, userId));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      };
+    }
+    [Authorize]
+    [HttpGet("{id}")]
+    public ActionResult<IEnumerable<Keep>> get(int id)
+    {
+      try
+      {
+        return Ok(_ks.Get(id));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      };
+    }
     [HttpPost]
     [Authorize]
     public ActionResult<Keep> post([FromBody] Keep newKeep)
@@ -44,15 +73,33 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
+
+
+    [Authorize]
+    [HttpPut("{id}")]
+    public ActionResult<Keep> Edit([FromBody] Keep editKeep, int id)
+    {
+      try
+      {
+        editKeep.UserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        editKeep.Id = id;
+        return _ks.Edit(editKeep);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
+
     [HttpDelete("{id}")]
     [Authorize]
     public ActionResult<Keep> Delete(int id)
     {
-      string user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-      // check to see if user is the creator of this keep
+      string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
       try
       {
-        return Ok(_ks.Delete(id));
+        return Ok(_ks.Delete(id, userId));
       }
       catch (Exception e)
       {
