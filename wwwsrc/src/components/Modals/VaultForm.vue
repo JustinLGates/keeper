@@ -10,7 +10,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content bg-secondary text-primary p-2 input-round-1">
         <div class="d-flex justify-content-between">
-          <h5 class="modal-title d-inline p-2 px-3" id="addAssignmentModalLabel">Add Vault</h5>
+          <h5 class="modal-title d-inline p-2 px-3">Add Vault</h5>
           <button
             type="button"
             class="p-2 px-3 close text-light"

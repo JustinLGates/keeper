@@ -5,7 +5,7 @@
     <keepForm />
     <vaultForm />
     <optionsForm />
-    <keep-details-modal />
+    <keepEditModal />
   </div>
 </template>
 
@@ -16,6 +16,7 @@ import keepForm from "./components/Modals/KeepForm.vue";
 import vaultForm from "./components/Modals/VaultForm.vue";
 import optionsForm from "./components/Modals/OptionsForm.vue";
 import keepDetailsModal from "./components/Modals/KeepDetails.vue";
+import keepEditModal from "./components/Modals/KeepEditModal.vue";
 export default {
   name: "App",
   async beforeCreate() {
@@ -27,7 +28,8 @@ export default {
     keepForm,
     vaultForm,
     optionsForm,
-    keepDetailsModal
+    keepDetailsModal,
+    keepEditModal
   }
 };
 </script>

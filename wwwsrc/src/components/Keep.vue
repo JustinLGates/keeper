@@ -7,7 +7,7 @@
       data-toggle="modal"
       data-target="#keepDetailsModal"
     >
-      <img class="w-100 input-round-top" :src="keepData.img" />
+      <img class="w-100 input-round-top" :src="keepData.img" alt="Bad url" />
       <h5 class="text-primary">{{keepData.name}}</h5>
       <p class="px-2">{{keepData.description}}</p>
       <div class="d-flex justify-content-between p-2"></div>

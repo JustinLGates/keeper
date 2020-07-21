@@ -2,13 +2,13 @@
   <div>
     <h1>{{this.$route.params.name}}</h1>
     <div class="card-columns p-1 px-sm-2">
-      <keep v-for="keep in keeps" :key="keep.id" :keepData="keep" />
+      <KeepEdit v-for="keep in keeps" :key="keep.id" :keepData="keep" />
     </div>
   </div>
 </template>
 
 <script>
-import keep from "../components/Keep";
+import KeepEdit from "../components/KeepEdit";
 export default {
   name: "VaultDetails",
 
@@ -29,7 +29,7 @@ export default {
     }
   },
   components: {
-    keep
+    KeepEdit
   }
 };
 </script>

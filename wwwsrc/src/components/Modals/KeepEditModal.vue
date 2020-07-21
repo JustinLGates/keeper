@@ -1,10 +1,10 @@
 <template>
   <div
     class="modal fade"
-    id="keepDetailsModal"
+    id="keepEditModal"
     tabindex="-1"
     role="dialog"
-    aria-labelledby="addKeep"
+    aria-labelledby="editKeep"
     aria-hidden="true"
   >
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -27,40 +27,10 @@
 
           <div class="p-2 row m-auto">
             <div class="p-2 col-6 col-sm-8 col-lg-9 w-80">
-              <keep :keepData="activeKeep" class="w-80 shadow input-round-1" />
+              <editKeep :keepData="activeKeep" class="w-80 shadow input-round-1" />
             </div>
-            <div class="pt-2 col-6 col-sm-4 col-lg-3 d-flex flex-column justify-content-between">
-              <div class="dropdown">
-                <span
-                  type="button"
-                  id="dropdownMenuOffset"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  data-offset="-30,10"
-                >
-                  Vaults
-                  <i class="fas fa-chevron-down"></i>
-                </span>
-                <div class="dropdown-menu bg-secondary" aria-labelledby="dropdownMenuOffset">
-                  <a
-                    v-for="vault in vaults"
-                    :key="vault.id"
-                    class="dropdown-item text-primary"
-                    type="button"
-                    @click="setVault(vault.name,vault.id)"
-                  >{{vault.name}}</a>
-                </div>
-              </div>
-              <div>
-                <br />
-                <button
-                  v-if="this.targetVault.id"
-                  @click="addToVault"
-                  class="btn btn-info text-light"
-                  data-dismiss="modal"
-                >Add to {{this.targetVault.name}}</button>
-              </div>
+            <div class="pt-2 col-6 col-sm-4 col-lg-3">
+              <h5>this is yours...</h5>
             </div>
           </div>
         </div>
@@ -70,7 +40,7 @@
 </template>
 
 <script>
-import keep from "../Keep";
+import editKeep from "../KeepEdit";
 export default {
   data() {
     return {
@@ -106,7 +76,7 @@ export default {
   },
 
   components: {
-    keep
+    editKeep
   }
 };
 </script>
