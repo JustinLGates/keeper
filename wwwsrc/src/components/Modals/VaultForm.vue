@@ -38,12 +38,14 @@
               placeholder="Description"
               required
             />
-            <button
-              @click="createVault"
-              type="button"
-              data-dismiss="modal"
-              class="btn btn-success text-light input-round-1"
-            >Create</button>
+            <div class="d-flex justify-content-end">
+              <button
+                @click="createVault"
+                type="button"
+                data-dismiss="modal"
+                class="btn btn-success text-light input-round-1"
+              >Save</button>
+            </div>
           </form>
         </div>
       </div>

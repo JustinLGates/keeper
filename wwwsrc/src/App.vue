@@ -136,10 +136,12 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 .mouse-show {
+  transition: 0.3s;
   opacity: 0;
 }
 /* may need to adjust this to .. */
 .hide-show:hover .mouse-show {
+  transition: 0.3s;
   opacity: 1;
 }
 </style>

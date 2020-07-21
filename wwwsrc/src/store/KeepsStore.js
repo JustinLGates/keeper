@@ -57,5 +57,13 @@ export const KeepsStore = {
         console.error(error);
       }
     },
+    async getAllUserKeeps({ commit, dispatch }) {
+      try {
+        let res = await api.get("keeps/user");
+        commit("setKeeps", res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
 };

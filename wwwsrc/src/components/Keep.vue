@@ -7,15 +7,19 @@
       data-toggle="modal"
       data-target="#keepDetailsModal"
     >
-      <img class="w-100 input-round-top" :src="keepData.img" alt="Bad url" />
-      <h5 class="text-primary">{{keepData.name}}</h5>
-      <h5>
-        <i class="fas fa-eye"></i>
-        {{keepData.views}}
-      </h5>
-      <h5>keeps {{keepData.keeps}}</h5>
-      <p class="px-2">description {{keepData.description}}</p>
-      <div class="d-flex justify-content-between p-2"></div>
+      <img class="w-100 input-round-top p-absolute" :src="keepData.img" alt="Bad url" />
+      <div class="d-flex justify-content-between p-2">
+        <h5 class="text-primary">{{keepData.name}}</h5>
+        <div class="mouse-show">
+          <i class="fas fa-eye"></i>
+          {{keepData.views}}
+        </div>
+        <div class="mouse-show">
+          <i class="fas fa-bookmark"></i>
+          {{keepData.keeps}}
+        </div>
+      </div>
+      <p class="px-2 mouse-show">description {{keepData.description}}</p>
     </div>
   </div>
 </template>
@@ -41,6 +45,8 @@ export default {
 </script>
 
 <style>
+.p-absolute {
+}
 .mouse-show {
   opacity: 0;
 }

@@ -79,5 +79,11 @@ namespace Keepr.Services
       }
       throw new Exception("something went wrong");
     }
+
+    internal IEnumerable<Keep> GetByUserId(string userId)
+    {
+
+      return _repo.GetAllUserKeeps(userId);
+    }
   }
 }
