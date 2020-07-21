@@ -29,7 +29,7 @@ namespace Keepr.Repositories
     internal Keep findKeep(int Id)
     {
       string sql = "SELECT * FROM keeps WHERE id = @Id;";
-      return _db.QueryFirst<Keep>(sql, new { Id });
+      return _db.QueryFirstOrDefault<Keep>(sql, new { Id });
     }
 
     internal IEnumerable<Keep> Get()

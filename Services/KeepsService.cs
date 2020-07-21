@@ -24,6 +24,10 @@ namespace Keepr.Services
       {
         throw new Exception("could not find keep");
       }
+      if (found.UserId != userId && found.IsPrivate == true)
+      {
+        throw new Exception("this is not yours...");
+      }
       return found;
 
 
