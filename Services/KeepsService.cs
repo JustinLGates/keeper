@@ -12,10 +12,21 @@ namespace Keepr.Services
     {
       _repo = repo;
     }
+    internal Keep FindById(int id)
+    {
+      return _repo.findKeep(id);
+    }
 
     internal Keep Get(int id, string userId)
     {
-      return _repo.Get(id, userId);
+      Keep found = FindById(id);
+      if (found == null)
+      {
+        throw new Exception("could not find keep");
+      }
+      return found;
+
+
     }
     public IEnumerable<Keep> Get()
     {
@@ -49,15 +60,20 @@ namespace Keepr.Services
 
     internal Keep Edit(Keep editKeep)
     {
-      Keep original = Get(editKeep.Id, editKeep.UserId);
-      original.Name = editKeep.Name == null ? original.Name : editKeep.Name;
-      original.Description = editKeep.Description == null ? original.Description : editKeep.Description;
-      original.Img = editKeep.Img;
-      original.IsPrivate = editKeep.IsPrivate != original.IsPrivate ? editKeep.IsPrivate : original.IsPrivate;
-      original.Views = editKeep.Views > original.Views ? editKeep.Views : original.Views;
-      original.Shares = editKeep.Shares > original.Shares ? editKeep.Shares : original.Shares;
-      original.Keeps = editKeep.Keeps > original.Keeps ? editKeep.Keeps : original.Keeps;
-      return _repo.Edit(original);
+      Keep original = FindById(editKeep.Id);
+      if (original.UserId == editKeep.UserId)
+      {
+        original.Name = editKeep.Name == null ? original.Name : editKeep.Name;
+        original.Description = editKeep.Description == null ? original.Description : editKeep.Description;
+        original.Img = editKeep.Img;
+        original.IsPrivate = editKeep.IsPrivate != original.IsPrivate ? editKeep.IsPrivate : original.IsPrivate;
+        original.Views = editKeep.Views > original.Views ? editKeep.Views : original.Views;
+        original.Shares = editKeep.Shares > original.Shares ? editKeep.Shares : original.Shares;
+        original.Keeps = editKeep.Keeps > original.Keeps ? editKeep.Keeps : original.Keeps;
+
+        return _repo.Edit(original);
+      }
+      throw new Exception("something went wrong");
     }
   }
 }

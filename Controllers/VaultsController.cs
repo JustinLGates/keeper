@@ -29,6 +29,10 @@ namespace keepr.Controllers
       try
       {
         string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        if (userId == null)
+        {
+          throw new Exception("login to see vaults");
+        }
         return Ok(_vs.Get(userId));
       }
       catch (Exception e)
@@ -57,6 +61,10 @@ namespace keepr.Controllers
       try
       {
         string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        if (userId == null)
+        {
+          throw new Exception("no userid");
+        }
         return Ok(_vs.GetById(id, userId));
       }
       catch (Exception e)
@@ -92,7 +100,7 @@ namespace keepr.Controllers
       }
     }
     [HttpDelete("{id}")]
-    public ActionResult<string> Delete(int id)
+    public ActionResult<bool> Delete(int id)
     {
       string user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
       if (user == null)

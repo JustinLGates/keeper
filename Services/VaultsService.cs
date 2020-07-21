@@ -17,6 +17,7 @@ namespace keepr.Services
     }
     public IEnumerable<Vault> Get(string userId)
     {
+
       return _repo.Get(userId);
     }
 
@@ -41,7 +42,16 @@ namespace keepr.Services
 
     internal Vault GetById(int id, string userId)
     {
-      return _repo.GetById(id, userId);
+      Vault found = _repo.GetById(id, userId);
+      if (found == null)
+      {
+        throw new Exception("no vault found with that id");
+      }
+      if (found.UserId == userId)
+      {
+        return _repo.GetById(id, userId);
+      }
+      throw new Exception("something when wrong");
     }
   }
 }

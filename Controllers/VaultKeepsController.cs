@@ -39,12 +39,17 @@ namespace keepr.Controllers
 
     [HttpDelete("{id}")]
 
-    public ActionResult<string> Delete(int id)
+    public ActionResult<bool> Delete(int id)
     {
       try
       {
         string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        if (userId == null)
+        {
+          throw new Exception("no user id provided");
+        }
         return _vks.Delete(id, userId);
+
       }
       catch (Exception e)
       {

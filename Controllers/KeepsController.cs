@@ -51,9 +51,7 @@ namespace Keepr.Controllers
     {
       try
       {
-
         string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
         return Ok(_ks.Get(id, userId));
       }
       catch (Exception e)
@@ -85,6 +83,10 @@ namespace Keepr.Controllers
       {
         editKeep.UserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
         editKeep.Id = id;
+        if (editKeep.UserId == null)
+        {
+          throw new Exception("no user id provided");
+        }
         return _ks.Edit(editKeep);
       }
       catch (Exception e)

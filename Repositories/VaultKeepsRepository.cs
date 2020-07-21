@@ -29,12 +29,18 @@ namespace keepr.Repositories
       return vaultKeep;
     }
 
-    internal string Delete(int id, string UserId)
+    internal bool Delete(int id, string UserId)
     {
       string sql = @"
       DELETE FROM vaultkeeps WHERE (id = @id AND userId = @userId);";
       _db.Execute(sql, new { id, UserId });
-      return "Success";
+      return true;
+    }
+
+    internal VaultKeep getvaultkeep(int Id)
+    {
+      string sql = "SELECT * FROM vaultkeeps WHERE id = @Id;";
+      return _db.QueryFirstOrDefault<VaultKeep>(sql, new { Id });
     }
 
     internal IEnumerable<VaultKeepViewModel> getKeepByVaultId(int id, string userId)

@@ -24,9 +24,22 @@ namespace keepr.Services
       return _repo.getKeepByVaultId(id, userId);
     }
 
-    internal string Delete(int id, string userId)
+    internal bool Delete(int id, string userId)
     {
-      return _repo.Delete(id, userId);
+      VaultKeep found = GetVaultKeep(id);
+      if (found == null)
+      {
+        throw new Exception("no vault by that id");
+      }
+      if (found.UserId == userId)
+      {
+        return _repo.Delete(id, userId);
+      }
+      throw new Exception("hmmm we couldnt seem to find anything are you a hacker?");
+    }
+    internal VaultKeep GetVaultKeep(int id)
+    {
+      return _repo.getvaultkeep(id);
     }
   }
 }

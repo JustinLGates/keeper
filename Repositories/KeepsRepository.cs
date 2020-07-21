@@ -26,6 +26,12 @@ namespace Keepr.Repositories
       return _db.Query<Keep>(sql, new { VaultId, UserId });
     }
 
+    internal Keep findKeep(int Id)
+    {
+      string sql = "SELECT * FROM keeps WHERE id = @Id;";
+      return _db.QueryFirst<Keep>(sql, new { Id });
+    }
+
     internal IEnumerable<Keep> Get()
     {
       string sql = "SELECT * FROM Keeps WHERE isPrivate = 0;";
@@ -64,8 +70,10 @@ namespace Keepr.Repositories
             (@Name, @Description, @UserId, @Img, @IsPrivate);
             SELECT LAST_INSERT_ID();
             ";
-      KeepData.Id = _db.ExecuteScalar<int>(sql, KeepData);
-      return KeepData;
+      int id = _db.ExecuteScalar<int>(sql, KeepData);
+      KeepData.Id = id;
+      sql = "SELECT * FROM keeps WHERE id = @id;";
+      return _db.QueryFirstOrDefault<Keep>(sql, new { id });
     }
     internal bool Delete(int Id, string UserId)
     {
