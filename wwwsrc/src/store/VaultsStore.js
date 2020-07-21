@@ -27,12 +27,11 @@ export const VaultsStore = {
     },
     async addToVault({ commit, dispatch }, data) {
       try {
-        let url = `vaults/${data.VaultId}/keeps/${data.KeepId}`;
-        let res = await api.post(url, data);
-        console.log(res.data);
+        let res = await api.post("vaultkeeps", data);
       } catch (error) {
         console.error(error);
       }
     },
+    getVaultName() {},
   },
 };

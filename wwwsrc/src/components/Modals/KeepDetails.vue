@@ -29,7 +29,7 @@
             <div class="p-2 col-6 col-sm-8 col-lg-9 w-80">
               <keep :keepData="activeKeep" class="w-80 shadow input-round-1" />
             </div>
-            <div class="pt-2 col-6 col-sm-4 col-lg-3 mx-auto">
+            <div class="pt-2 col-6 col-sm-4 col-lg-3 d-flex flex-column justify-content-between">
               <div class="dropdown">
                 <span
                   type="button"
@@ -48,9 +48,17 @@
                     :key="vault.id"
                     class="dropdown-item text-primary"
                     type="button"
-                    @click="addToVault(vault.id)"
+                    @click="setVault(vault.name,vault.id)"
                   >{{vault.name}}</a>
                 </div>
+              </div>
+              <div>
+                <br />
+                <button
+                  v-if="this.targetVault.id"
+                  @click="addToVault"
+                  class="btn btn-info text-light"
+                >Add to {{this.targetVault.name}}</button>
               </div>
             </div>
           </div>
@@ -65,8 +73,9 @@ import keep from "../Keep";
 export default {
   data() {
     return {
-      form: {
-        IsPrivate: false
+      targetVault: {
+        name: "",
+        id: null
       }
     };
   },
@@ -82,16 +91,19 @@ export default {
     getKeep() {
       this.$store.dispatch("getKeep", this.form);
     },
-    addToVault(vaultId) {
+    setVault(name, id) {
+      this.targetVault.name = name;
+      this.targetVault.id = id;
+    },
+    addToVault() {
       let data = {
-        VaultId: vaultId,
+        VaultId: this.targetVault.id,
         KeepId: this.activeKeep.id
       };
-      console.log(data.KeepId);
-
       this.$store.dispatch("addToVault", data);
     }
   },
+
   components: {
     keep
   }

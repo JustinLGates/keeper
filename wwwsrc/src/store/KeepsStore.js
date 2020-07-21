@@ -12,6 +12,9 @@ export const KeepsStore = {
     setActiveKeep(state, keep) {
       state.activeKeep = keep;
     },
+    addKeep(state, keep) {
+      state.keeps.push(keep);
+    },
   },
   actions: {
     async getPublicKeeps({ commit }) {
@@ -25,18 +28,19 @@ export const KeepsStore = {
     setActiveKeep({ commit }, keep) {
       commit("setActiveKeep", keep);
     },
-    async getKeepsByVaultId({ commit }, vault) {
+    async getKeepsByVaultId({ commit }, id) {
       commit("setKeeps", []);
       try {
-        let res = await api.get("keeps/" + vault.Id);
+        let res = await api.get("keeps/vault/" + id);
         commit("setKeeps", res.data);
       } catch (error) {
         console.error(Error);
       }
     },
-    async createKeep({}, data) {
+    async createKeep({ commit, dispatch }, data) {
       try {
-        await api.post("keeps", data);
+        let newKeep = await api.post("keeps", data);
+        dispatch("getPublicKeeps", newKeep);
       } catch (error) {
         console.error(error);
       }

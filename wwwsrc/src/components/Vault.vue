@@ -2,9 +2,7 @@
   <!--  -->
   <div class="text-light hide-show bg-secondary input-round-1 shadow p-2">
     <span>
-      <router-link
-        :to="{ name: 'vault', params: { id: vaultData.id,name:vaultData.name,description:vaultData.description }}"
-      >
+      <router-link :to="{ name: 'vault', params: { id: vaultData.id,name:vaultData.name }}">
         <h4 class="text-primary d-inline">{{vaultData.name}}</h4>
       </router-link>
     </span>
