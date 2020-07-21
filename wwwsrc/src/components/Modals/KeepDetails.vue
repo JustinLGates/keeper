@@ -10,7 +10,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content bg-secondary text-primary p-2 input-round-1">
         <div class="d-flex justify-content-between">
-          <h5 class="modal-title d-inline p-2 px-3">{{activeKeep.name}}</h5>
+          <h5 class="modal-title d-inline p-2 px-3">Choose a vault</h5>
           <button
             type="button"
             class="p-2 px-3 close text-light"
@@ -27,9 +27,33 @@
 
           <div class="p-2 row m-auto">
             <div class="p-2 col-6 col-sm-8 col-lg-9 w-80">
+              <h5 class="modal-title d-inline p-2 px-3">{{activeKeep.name}}</h5>
               <keep :keepData="activeKeep" class="w-80 shadow input-round-1" />
             </div>
-            <div class="pt-2 col-6 col-sm-4 col-lg-3 d-flex flex-column justify-content-between">
+
+            <div class="pt-2 col-6 col-sm-4 col-lg-3 d-flex flex-column text-left">
+              <div class="flex-grow-1">
+
+              <a
+                v-for="vault in vaults"
+                :key="vault.id"
+                class="btn btn-dark"
+                type="button"
+                @click="setVault(vault.name,vault.id)"
+              >{{vault.name}}</a>
+              </div>
+
+            <div class="d-flex justify-content-center">
+            <button
+                  v-if="this.targetVault.id"
+                  @click="addToVault"
+                  class="btn btn-info text-light"
+                  data-dismiss="modal"
+                >Add to {{this.targetVault.name}}</button>
+              </div>
+            </div>
+            </div>
+            <!-- <div class="pt-2 col-6 col-sm-4 col-lg-3 d-flex flex-column justify-content-between">
               <div class="dropdown">
                 <span
                   type="button"
@@ -61,7 +85,7 @@
                   data-dismiss="modal"
                 >Add to {{this.targetVault.name}}</button>
               </div>
-            </div>
+            </div>-->
           </div>
         </div>
       </div>
@@ -102,6 +126,11 @@ export default {
         KeepId: this.activeKeep.id
       };
       this.$store.dispatch("addToVault", data);
+      this.addKeep();
+    },
+    addKeep() {
+      this.activeKeep.keeps++;
+      this.$store.dispatch("updataKeeps", this.activeKeep);
     }
   },
 

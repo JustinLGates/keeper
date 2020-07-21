@@ -5,6 +5,7 @@
     <keepForm />
     <vaultForm />
     <optionsForm />
+    <keepDetailsModal />
     <keepEditModal />
   </div>
 </template>

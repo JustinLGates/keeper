@@ -45,5 +45,17 @@ export const KeepsStore = {
         console.error(error);
       }
     },
+    async updateKeeps({ commit, dispatch }, data) {
+      try {
+        let res = api.put("keeps/" + data.id, data);
+      } catch (error) {}
+    },
+    async removeVaultKeep({ commit, dispatch }, id) {
+      try {
+        let res = api.delete("vaultkeeps/" + id);
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
 };

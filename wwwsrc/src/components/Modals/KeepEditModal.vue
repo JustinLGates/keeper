@@ -25,12 +25,15 @@
         <div class="modal-body m-0 p-0">
           <hr class="text-primary bg-primary m-0 p-0" />
 
-          <div class="p-2 row m-auto">
-            <div class="p-2 col-6 col-sm-8 col-lg-9 w-80">
+          <div class="p-1 row m-auto">
+            <div class="p-0 col-6 col-sm-8 col-lg-9 w-80">
               <editKeep :keepData="activeKeep" class="w-80 shadow input-round-1" />
             </div>
-            <div class="pt-2 col-6 col-sm-4 col-lg-3">
-              <h5>this is yours...</h5>
+            <div class="p-0 pt-2 col-6 col-sm-4 col-lg-3">
+              <h5>{{this.$route.params.name}}</h5>
+              <div>
+                <button class="btn btn-danger text-light">Remove</button>
+              </div>
             </div>
           </div>
         </div>
@@ -42,8 +45,13 @@
 <script>
 import editKeep from "../KeepEdit";
 export default {
+  mounted() {
+    this.form.IsPrivate = activeKeep.IsPrivate;
+    this.form.id = activeKeep.id;
+  },
   data() {
     return {
+      form: {},
       targetVault: {
         name: "",
         id: null
@@ -72,6 +80,9 @@ export default {
         KeepId: this.activeKeep.id
       };
       this.$store.dispatch("addToVault", data);
+    },
+    removeKeep() {
+      this.$store.dispatch("removeVaultKeep", this.form.id);
     }
   },
 

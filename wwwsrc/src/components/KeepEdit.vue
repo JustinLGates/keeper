@@ -1,5 +1,6 @@
 <template>
   <div
+    @click="setActiveKeep"
     class="card input-round-1 bg-secondary text-light"
     type="button"
     data-toggle="modal"

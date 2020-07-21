@@ -32,6 +32,12 @@ export const VaultsStore = {
         console.error(error);
       }
     },
-    getVaultName() {},
+    async deleteVault({ commit, dispatch }, id) {
+      try {
+        await api.delete("vaults/" + id);
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
 };

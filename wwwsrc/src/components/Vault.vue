@@ -6,6 +6,7 @@
         <h4 class="text-primary d-inline">{{vaultData.name}}</h4>
       </router-link>
     </span>
+    <button @click="deleteVault(vaultData.id)" class="btn btn-danger mouse-show">delete</button>
     <p class="px-2 mouse-show">{{vaultData.description}}</p>
   </div>
 </template>
@@ -18,7 +19,12 @@ export default {
     return {};
   },
   props: ["vaultData"],
-  methods: {}
+  methods: {
+    deleteVault(id) {
+      this.$store.dispatch("deleteVault", id);
+      event.stopPropagation();
+    }
+  }
 };
 </script>
 
