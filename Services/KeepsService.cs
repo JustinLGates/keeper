@@ -33,7 +33,16 @@ namespace Keepr.Services
 
     internal object Delete(int id, string userId)
     {
-      return _repo.Delete(id, userId);
+      Keep found = Get(id, userId);
+      if (found == null)
+      {
+        throw new NullReferenceException("keep id is no good..");
+      }
+      if (found.UserId == userId)
+      {
+        return _repo.Delete(id, userId);
+      }
+      throw new Exception("hmmm something dosnt add up..");
     }
 
 

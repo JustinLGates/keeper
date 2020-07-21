@@ -32,10 +32,10 @@ namespace keepr.Repositories
       return vaultData;
     }
 
-    internal object GetById(int id, string userId)
+    internal Vault GetById(int id, string userId)
     {
       string sql = "SELECT * FROM vaults WHERE id = @id && userId = @userId;";
-      return _db.QueryFirstOrDefault(sql, new { id, userId });
+      return _db.QueryFirstOrDefault<Vault>(sql, new { id, userId });
     }
 
     internal bool Delete(int id)

@@ -92,12 +92,16 @@ namespace keepr.Controllers
       }
     }
     [HttpDelete("{id}")]
-    public ActionResult<Vault> Delete(int id)
+    public ActionResult<string> Delete(int id)
     {
       string user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      if (user == null)
+      {
+        throw new Exception("you cant delete this....");
+      }
       try
       {
-        return Ok(_vs.Delete(id));
+        return Ok(_vs.Delete(id, user));
       }
       catch (Exception e)
       {

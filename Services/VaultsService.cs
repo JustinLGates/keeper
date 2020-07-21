@@ -25,12 +25,21 @@ namespace keepr.Services
       return _repo.Create(newVault);
     }
 
-    internal object Delete(int id)
+    internal bool Delete(int id, string userId)
     {
-      return _repo.Delete(id);
+      Vault found = GetById(id, userId);
+      if (found == null)
+      {
+        throw new NullReferenceException("no vault by that id");
+      }
+      else if (found.UserId == userId)
+      {
+        return _repo.Delete(id);
+      }
+      else return false;
     }
 
-    internal object GetById(int id, string userId)
+    internal Vault GetById(int id, string userId)
     {
       return _repo.GetById(id, userId);
     }

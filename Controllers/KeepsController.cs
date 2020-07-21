@@ -47,11 +47,13 @@ namespace Keepr.Controllers
       };
     }
     [HttpGet("{id}")]
-    public ActionResult<IEnumerable<Keep>> get(int id)
+    public ActionResult<Keep> get(int id)
     {
       try
       {
+
         string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
         return Ok(_ks.Get(id, userId));
       }
       catch (Exception e)
@@ -97,6 +99,10 @@ namespace Keepr.Controllers
     public ActionResult<Keep> Delete(int id)
     {
       string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+      if (userId == null)
+      {
+        throw new Exception("no id provided...");
+      }
       try
       {
         return Ok(_ks.Delete(id, userId));

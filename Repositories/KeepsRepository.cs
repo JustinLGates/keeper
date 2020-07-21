@@ -52,15 +52,7 @@ namespace Keepr.Repositories
     internal Keep Get(int id, string userId)
     {
       string sql = "SELECT * FROM Keeps WHERE id = @id;";
-      Keep keepdata = _db.QueryFirstOrDefault<Keep>(sql, new { id });
-      if (keepdata.IsPrivate && keepdata.UserId != userId)
-      {
-        throw new UnauthorizedAccessException("this is not yours");
-      }
-      else
-      {
-        return keepdata;
-      }
+      return _db.QueryFirstOrDefault<Keep>(sql, new { id });
     }
 
     internal Keep Create(Keep KeepData)
