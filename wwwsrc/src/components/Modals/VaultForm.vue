@@ -29,6 +29,7 @@
             <div class="d-flex align-items-center">
               <input v-model="form.Name" class="input-round p-1" type="text" placeholder="Name" />
             </div>
+
             <label class="p-1 m-0">Description</label>
             <textarea
               v-model="form.Description"

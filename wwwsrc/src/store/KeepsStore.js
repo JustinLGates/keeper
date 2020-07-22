@@ -52,9 +52,19 @@ export const KeepsStore = {
       }
     },
     async createKeep({ commit, dispatch }, data) {
+      debugger;
       try {
         let newKeep = await api.post("keeps", data);
         dispatch("getPublicKeeps", newKeep);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async createKeepReturnId({ commit, dispatch }, data) {
+      try {
+        let res = await api.post("keeps", data);
+        console.log(res.data);
+        return res.data;
       } catch (error) {
         console.error(error);
       }

@@ -9,11 +9,10 @@
       >Delete</button>
       <p class="px-2 mouse-show">{{keepData.description}}</p>
       <button
-        @click.stop="viewDetails"
         class="btn btn-info btn-outline-info text-light mouse-show btn-bottom-right input-round-1"
         type="button"
         data-toggle="modal"
-        data-target="#keepDetailsModal"
+        data-target="#keepEditModal"
       >View</button>
       <div class="d-flex justify-content-between p-2"></div>
     </div>

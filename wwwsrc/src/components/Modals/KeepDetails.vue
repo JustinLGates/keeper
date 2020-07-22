@@ -52,39 +52,6 @@
               </div>
             </div>
           </div>
-          <!-- <div class="pt-2 col-6 col-sm-4 col-lg-3 d-flex flex-column justify-content-between">
-              <div class="dropdown">
-                <span
-                  type="button"
-                  id="dropdownMenuOffset"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  data-offset="-30,10"
-                >
-                  Vaults
-                  <i class="fas fa-chevron-down"></i>
-                </span>
-                <div class="dropdown-menu bg-secondary" aria-labelledby="dropdownMenuOffset">
-                  <a
-                    v-for="vault in vaults"
-                    :key="vault.id"
-                    class="dropdown-item text-primary"
-                    type="button"
-                    @click="setVault(vault.name,vault.id)"
-                  >{{vault.name}}</a>
-                </div>
-              </div>
-              <div>
-                <br />
-                <button
-                  v-if="this.targetVault.id"
-                  @click="addToVault"
-                  class="btn btn-info text-light"
-                  data-dismiss="modal"
-                >Add to {{this.targetVault.name}}</button>
-              </div>
-          </div>-->
         </div>
       </div>
     </div>

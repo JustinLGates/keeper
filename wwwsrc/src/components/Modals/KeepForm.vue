@@ -8,7 +8,7 @@
     aria-hidden="true"
   >
     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content bg-secondary text-primary p-2 input-round-1">
+      <div class="modal-content bg-secondary text-light p-2 input-round-1">
         <div class="d-flex justify-content-between">
           <h5 class="modal-title d-inline p-2 px-3">Add Keep</h5>
           <button
@@ -25,10 +25,19 @@
         <div class="modal-body m-0 p-0">
           <hr class="text-primary bg-primary m-0 p-0" />
           <form id="create-keep-form">
-            <label class="p-1 m-0">Name</label>
-
-            <div class="d-flex align-items-center">
-              <input v-model="form.Name" class="input-round p-1" type="text" placeholder="Name" />
+            <div class="d-flex justify-content-between">
+              <div class>
+                <label class="p-1 m-0">testing this still</label>
+                <br />
+                <input v-model="form.Name" class="input-round p-1" type="text" placeholder="Name" />
+              </div>
+              <a
+                v-for="vault in vaults"
+                :key="vault.id"
+                class="btn btn-dark"
+                type="button"
+                @click="setVault(vault.name,vault.id)"
+              >{{vault.name}}</a>
             </div>
 
             <label class="p-1 m-0">Description</label>
@@ -61,6 +70,7 @@
               </div>
               <div class="input-round-2">
                 <button
+                  v-if="this.targetVault.id"
                   @click="createKeep"
                   type="button"
                   data-dismiss="modal"
@@ -81,13 +91,29 @@ export default {
     return {
       form: {
         IsPrivate: false
+      },
+      targetVault: {
+        name: "",
+        id: null
       }
     };
   },
-  computed: {},
+  computed: {
+    vaults() {
+      return this.$store.state.VaultsStore.vaults;
+    }
+  },
   methods: {
-    createKeep() {
-      this.$store.dispatch("createKeep", this.form);
+    async createKeep() {
+      let keep = await this.$store.dispatch("createKeepReturnId", this.form);
+      this.form.KeepId = keep.id;
+      this.form.VaultId = this.targetVault.id;
+      debugger;
+      this.$store.dispatch("addToVault", this.form);
+    },
+    setVault(name, id) {
+      this.targetVault.name = name;
+      this.targetVault.id = id;
     }
   }
 };

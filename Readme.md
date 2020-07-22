@@ -65,9 +65,9 @@ What this site is already pretty if you follow the mocks :wink: Make sure the fe
 - Users can:
 
 - Register, login and be automatically logged on page refresh //DONE
-- Create and Delete Keeps //NEED TO COMPLETE
+- Create and Delete Keeps //Done??
 - Create and Delete Vaults //DONE
-- Only Delete **things they created** //DONE
+- Only Delete **things they created** //DONE??
 - Add Keeps to Vaults //DONE
 - Remove Keeps from Vaults // NEED TO COMPLETE
 

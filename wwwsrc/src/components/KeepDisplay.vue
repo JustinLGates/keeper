@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12 pt-3">
         <div class="card-columns">
-          <Keep v-for="keep in publicKeeps" :key="keep.Id" :keepData="keep" />
+          <KeepEdit v-for="keep in keeps" :key="keep.id" :keepData="keep" />
         </div>
       </div>
     </div>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Keep from "../components/Keep";
+import KeepEdit from "../components/KeepEdit";
 export default {
   name: "home",
   mounted() {
@@ -53,7 +53,7 @@ export default {
     }
   },
   components: {
-    Keep
+    KeepEdit
   }
 };
 </script>

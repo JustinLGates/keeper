@@ -23,6 +23,7 @@
             <div class="d-flex mx-1 mx-sm-2 mx-md-3">
               <div class="dropdown">
                 <span
+                  @click="getVaults"
                   type="button"
                   id="dropdownMenuOffset"
                   data-toggle="dropdown"
@@ -81,6 +82,9 @@ export default {
     async logout() {
       this.$store.dispatch("resetBearer");
       await this.$auth.logout({ returnTo: window.location.origin });
+    },
+    getVaults() {
+      this.$store.dispatch("getVaults");
     }
   }
 };

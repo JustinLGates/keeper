@@ -31,12 +31,7 @@
             </div>
             <div class="p-2 pt-2 col-12">
               <h5>{{this.$route.params.name}}</h5>
-              <div>
-                <button
-                  @click="removeKeep(activeKeep.id)"
-                  class="btn btn-danger text-light"
-                >Remove...</button>
-              </div>
+              <div></div>
             </div>
           </div>
         </div>
