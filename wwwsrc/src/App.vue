@@ -20,6 +20,9 @@ import keepDetailsModal from "./components/Modals/KeepDetails.vue";
 import keepEditModal from "./components/Modals/KeepEditModal.vue";
 export default {
   name: "App",
+  mounted() {
+    this.$store.dispatch("getVaults");
+  },
   async beforeCreate() {
     await onAuth();
     this.$store.dispatch("setBearer", this.$auth.bearer);

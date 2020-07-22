@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1>{{this.$route.params.name}}</h1>
+    <h1
+      class="bg-secondary text-light rounded-bottom shadow rounded p-2 m-2 text-center"
+    >{{this.$route.params.name}} vault</h1>
     <div class="card-columns p-1 px-sm-2">
       <KeepEdit v-for="keep in keeps" :key="keep.id" :keepData="keep" />
     </div>
@@ -13,7 +15,11 @@ export default {
   name: "VaultDetails",
 
   mounted() {
-    this.getVaultData();
+    let data = {
+      id: this.$route.params.id,
+      done: true
+    };
+    this.$store.dispatch("getVaultKeeps", data);
   },
   computed: {
     keeps() {

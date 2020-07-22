@@ -10,9 +10,12 @@ export const VaultsStore = {
     },
   },
   actions: {
-    async getVaults({ commit }) {
+    async getVaults({ commit }, bool) {
       try {
         let res = await api.get("vaults");
+        if (bool) {
+          return res.data;
+        }
         commit("setVaults", res.data);
       } catch (error) {
         console.error(error);

@@ -17,6 +17,20 @@ export const KeepsStore = {
     },
   },
   actions: {
+    async getVaultKeeps({ commit, dispatch }, data) {
+      try {
+        let res = await api.get("vaults/" + data.id + "/keeps");
+        if (data.done == true) {
+          commit("setKeeps", res.data);
+        } else return res.data;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getUserVaultKeeps({ commit, dispatch }, data) {
+      commit("setKeeps", data);
+    },
+
     async getPublicKeeps({ commit }) {
       try {
         let res = await api.get("keeps");
@@ -50,10 +64,10 @@ export const KeepsStore = {
         let res = api.put("keeps/" + data.id, data);
       } catch (error) {}
     },
-    async removeVaultKeep({ commit, dispatch }, id) {
+    async deleteVaultKeep({ commit, dispatch }, id) {
       try {
-        debugger;
-        let res = api.delete("vaultkeeps/" + id);
+        let res = await api.delete("vaultkeeps/" + id);
+        console.log(res.data);
       } catch (error) {
         console.error(error);
       }
