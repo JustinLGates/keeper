@@ -9,7 +9,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    publicKeeps: [],
+    // publicKeeps: [],
   },
   mutations: {},
   actions: {

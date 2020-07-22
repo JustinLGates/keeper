@@ -40,10 +40,10 @@
             />
             <div class="d-flex justify-content-end">
               <button
-                @click="createVault"
                 type="button"
                 data-dismiss="modal"
                 class="btn btn-success text-light input-round-1"
+                @click="createVault"
               >Save</button>
             </div>
           </form>
@@ -66,6 +66,7 @@ export default {
   methods: {
     createVault() {
       this.$store.dispatch("createVault", this.form);
+      this.$store.dispatch("getVaults");
     }
   }
 };

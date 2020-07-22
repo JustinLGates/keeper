@@ -26,13 +26,16 @@
           <hr class="text-primary bg-primary m-0 p-0" />
 
           <div class="p-1 row m-auto">
-            <div class="p-0 col-6 col-sm-8 col-lg-9 w-80">
-              <editKeep :keepData="activeKeep" class="w-80 shadow input-round-1" />
+            <div class="p-0 col-12">
+              <editKeep :keepData="activeKeep" class="w-100 shadow input-round-1" />
             </div>
-            <div class="p-0 pt-2 col-6 col-sm-4 col-lg-3">
+            <div class="p-2 pt-2 col-12">
               <h5>{{this.$route.params.name}}</h5>
               <div>
-                <button class="btn btn-danger text-light">Remove</button>
+                <button
+                  @click="removeKeep(activeKeep.id)"
+                  class="btn btn-danger text-light"
+                >Remove...</button>
               </div>
             </div>
           </div>
@@ -82,7 +85,7 @@ export default {
       this.$store.dispatch("addToVault", data);
     },
     removeKeep() {
-      this.$store.dispatch("removeVaultKeep", this.form.id);
+      this.$store.dispatch("removeVaultKeep", this.activeKeep.id);
     }
   },
 

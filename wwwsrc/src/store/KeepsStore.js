@@ -52,6 +52,7 @@ export const KeepsStore = {
     },
     async removeVaultKeep({ commit, dispatch }, id) {
       try {
+        debugger;
         let res = api.delete("vaultkeeps/" + id);
       } catch (error) {
         console.error(error);

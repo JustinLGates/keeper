@@ -35,6 +35,7 @@ export const VaultsStore = {
     async deleteVault({ commit, dispatch }, id) {
       try {
         await api.delete("vaults/" + id);
+        dispatch("getVaults");
       } catch (error) {
         console.error(error);
       }

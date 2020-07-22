@@ -50,23 +50,26 @@ What this site is already pretty if you follow the mocks :wink: Make sure the fe
 
 #### Visualization:
 
-- Visitors can see all public keeps (login not required)
-- Keeps are displayed in a card like format with all data rendered
-- Users have a dashboard route to see all their keeps and vaults
-- Users can only see vaults they created
-- Users can View all the keeps in a given vault
-- Anytime a `keep` is `kept in a vault` the relevant count should go up
+-------------------------------------------------------------------------------DONE
+
+- Visitors can see all public keeps (login not required) //DONE
+- Keeps are displayed in a card like format with all data rendered //DONE
+- Users have a dashboard route to see all their keeps and vaults //DONE
+- Users can only see vaults they created//DONE
+- Users can View all the keeps in a given vault//DONE
+- Anytime a `keep` is `kept in a vault` the relevant count should go up //DONE
+  ---------------------------------------------------------------------------------DONE
 
 #### Functionality:
 
 - Users can:
 
-- Register, login and be automatically logged on page refresh
-- Create and Delete Keeps
-- Create and Delete Vaults
-- Only Delete **things they created**
-- Add Keeps to Vaults
-- Remove Keeps from Vaults
+- Register, login and be automatically logged on page refresh //DONE
+- Create and Delete Keeps //NEED TO COMPLETE
+- Create and Delete Vaults //DONE
+- Only Delete **things they created** //DONE
+- Add Keeps to Vaults //DONE
+- Remove Keeps from Vaults // NEED TO COMPLETE
 
 ### Finished?
 

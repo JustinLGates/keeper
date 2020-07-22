@@ -15,7 +15,7 @@ import Keep from "../components/Keep";
 export default {
   name: "home",
   mounted() {
-    this.$store.dispatch("getPublicKeeps");
+    this.$store.dispatch("getAllUserKeeps");
   },
   computed: {
     user() {

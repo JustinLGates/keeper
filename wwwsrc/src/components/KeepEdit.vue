@@ -1,13 +1,15 @@
 <template>
-  <div
+  <!-- <div
     @click="setActiveKeep"
     class="card input-round-1 bg-secondary text-light"
     type="button"
     data-toggle="modal"
     data-target="#keepEditModal"
-  >
+  >-->
+  <div class="hide-show">
     <img class="w-100 input-round-top" :src="keepData.img" />
     <h5 class="text-primary">{{keepData.name}}</h5>
+    <button class="btn btn-danger mouse-show">Delete</button>
     <p class="px-2">{{keepData.description}}</p>
     <div class="d-flex justify-content-between p-2"></div>
   </div>

@@ -33,18 +33,17 @@
 
             <div class="pt-2 col-6 col-sm-4 col-lg-3 d-flex flex-column text-left">
               <div class="flex-grow-1">
-
-              <a
-                v-for="vault in vaults"
-                :key="vault.id"
-                class="btn btn-dark"
-                type="button"
-                @click="setVault(vault.name,vault.id)"
-              >{{vault.name}}</a>
+                <a
+                  v-for="vault in vaults"
+                  :key="vault.id"
+                  class="btn btn-dark"
+                  type="button"
+                  @click="setVault(vault.name,vault.id)"
+                >{{vault.name}}</a>
               </div>
 
-            <div class="d-flex justify-content-center">
-            <button
+              <div class="d-flex justify-content-center">
+                <button
                   v-if="this.targetVault.id"
                   @click="addToVault"
                   class="btn btn-info text-light"
@@ -52,8 +51,8 @@
                 >Add to {{this.targetVault.name}}</button>
               </div>
             </div>
-            </div>
-            <!-- <div class="pt-2 col-6 col-sm-4 col-lg-3 d-flex flex-column justify-content-between">
+          </div>
+          <!-- <div class="pt-2 col-6 col-sm-4 col-lg-3 d-flex flex-column justify-content-between">
               <div class="dropdown">
                 <span
                   type="button"
@@ -85,8 +84,7 @@
                   data-dismiss="modal"
                 >Add to {{this.targetVault.name}}</button>
               </div>
-            </div>-->
-          </div>
+          </div>-->
         </div>
       </div>
     </div>
@@ -127,10 +125,16 @@ export default {
       };
       this.$store.dispatch("addToVault", data);
       this.addKeep();
+
+      //the time out is so the modal will still close
+      setTimeout(() => {
+        this.targetVault.id = null;
+        this.targetVault.name = null;
+      }, 2);
     },
     addKeep() {
       this.activeKeep.keeps++;
-      this.$store.dispatch("updataKeeps", this.activeKeep);
+      this.$store.dispatch("updateKeeps", this.activeKeep);
     }
   },
 
